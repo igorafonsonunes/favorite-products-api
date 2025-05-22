@@ -25,8 +25,8 @@ export class ListaProdutoFavorito {
   @Column({ type: 'float' })
   preco: number;
 
-  @Column({ type: 'int' })
-  avaliacao: number;
+  @Column({ type: 'varchar' })
+  avaliacao: string;
 
   @Column({ type: 'int' })
   contador: number;

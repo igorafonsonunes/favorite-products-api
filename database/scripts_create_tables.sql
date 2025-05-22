@@ -12,7 +12,7 @@ CREATE TABLE lista_produtos_favoritos (
   titulo VARCHAR NOT NULL,
   imagem VARCHAR(300),
   preco FLOAT,
-  avaliacao INTEGER,
+  avaliacao VARCHAR(100),
   contador INTEGER,
   UNIQUE (id_cliente, titulo)
 );
