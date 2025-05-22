@@ -1,15 +1,19 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { FakeStoreClient } from '../../@shared/clients/fake_store.client';
 
 @Injectable()
 export class ProdutosService {
   constructor(private readonly fakeStoreClient: FakeStoreClient) {}
 
-  findAll() {
+  async findAll() {
     return this.fakeStoreClient.getAllProducts();
   }
 
-  findOne(id: number) {
-    return this.fakeStoreClient.getProductById(id);
+  async findOne(id: number) {
+    const produto = await this.fakeStoreClient.getProductById(id);
+    if (!produto) {
+      throw new NotFoundException('Produto não encontrado');
+    }
+    return produto;
   }
 }
