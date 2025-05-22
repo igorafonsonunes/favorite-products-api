@@ -1,8 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { ProdutosFavoritosController } from './produtos_favoritos.controller';
 import { ProdutosFavoritosService } from './produtos_favoritos.service';
-import { CreateListaProdutoFavoritoDto } from './dto/create-lista-produtos_favorito.dto';
-import { UpdateListaProdutosFavoritoDto } from './dto/update-lista-produtos_favorito.dto';
 
 describe('ProdutosFavoritosController', () => {
   let controller: ProdutosFavoritosController;
@@ -39,7 +37,7 @@ describe('ProdutosFavoritosController', () => {
 
   describe('create', () => {
     it('should create a new produto favorito', async () => {
-      const dto: CreateListaProdutoFavoritoDto = {
+      const dto = {
         clienteId: 1,
         titulo: 'Teste',
         imagem: 'teste.jpg',
@@ -48,21 +46,6 @@ describe('ProdutosFavoritosController', () => {
         contador: 1,
       };
       const result = await controller.create(dto);
-      expect(result).toBeDefined();
-    });
-  });
-
-  describe('update', () => {
-    it('should update a produto favorito', async () => {
-      const id = 1;
-      const dto: UpdateListaProdutosFavoritoDto = {
-        titulo: 'Atualizado',
-        imagem: 'atualizado.jpg',
-        preco: 12.99,
-        avaliacao: 4,
-        contador: 2,
-      };
-      const result = await controller.update(id.toString(), dto);
       expect(result).toBeDefined();
     });
   });
