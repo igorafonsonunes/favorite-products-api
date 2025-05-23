@@ -79,11 +79,17 @@ export class ProdutosFavoritosService {
   }
 
   async remove(id: number) {
-    const favorito = await this.repository.findOneBy({ id });
-    if (!favorito) {
-      throw new NotFoundException('Produto favorito não encontrado.');
+    try {
+      const favorito = await this.repository.findOneBy({ id });
+      if (!favorito) {
+        throw new NotFoundException('Produto favorito não encontrado.');
+      }
+      await this.repository.delete(id);
+      return { message: 'Produto removido da lista com sucesso.' };
+    } catch (error) {
+      throw new InternalServerErrorException(
+        'Erro ao deletar produto favorito.',
+      );
     }
-
-    return this.repository.delete(id);
   }
 }

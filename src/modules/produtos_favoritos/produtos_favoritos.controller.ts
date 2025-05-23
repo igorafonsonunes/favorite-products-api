@@ -1,7 +1,17 @@
-import { Controller, Get, Post, Body, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Param,
+  Delete,
+  UseGuards,
+} from '@nestjs/common';
 import { ProdutosFavoritosService } from './produtos_favoritos.service';
 import { CreateListaProdutoFavoritoDto } from './dto/create-lista-produtos_favorito.dto';
+import { AuthGuard } from '../../@shared/guards/auth.guard';
 
+@UseGuards(AuthGuard)
 @Controller('produtos-favoritos')
 export class ProdutosFavoritosController {
   constructor(
