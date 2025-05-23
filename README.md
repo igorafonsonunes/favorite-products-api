@@ -6,9 +6,6 @@
 * [Instalação](#instalação)
 * [Endpoints](#endpoints)
 * [Como Utilizar](#como-utilizar)
-* [Exemplos de Uso](#exemplos-de-uso)
-* [Parâmetros](#parâmetros)
-* [Observações](#observações)
 
 ## Introdução
 
