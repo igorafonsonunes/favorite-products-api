@@ -12,9 +12,12 @@ import { ClienteService } from './cliente.service';
 import { CreateClienteDto } from './dto/create-cliente.dto';
 import { UpdateClienteDto } from './dto/update-cliente.dto';
 import { AuthGuard } from '../../@shared/guards/auth.guard';
+import { Roles } from '../../@shared/decorators/roles.decorator';
+import { RolesGuard } from '../../@shared/guards/roles.guard';
 
-@UseGuards(AuthGuard)
+@UseGuards(AuthGuard, RolesGuard)
 @Controller('cliente')
+@Roles('ADMIN')
 export class ClienteController {
   constructor(private readonly clienteService: ClienteService) {}
 
