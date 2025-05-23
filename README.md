@@ -78,6 +78,18 @@ Para utilizar essas requisições, basta importar a coleção no Postman e subst
 
 Observação: Gere um novo token acessando o endpoint de login e copie o token JWT retornado. Em seguida, adicione-o no campo Authorization (tipo: Bearer Token) nas requisições que exigem autenticação.
 
+### Banco de dados
+
+Dentro do projeto, existe uma pasta chamada database que contém o script SQL responsável pela criação de todas as tabelas utilizadas na aplicação.
+
+Recomenda-se executar esse script em uma instância local padrão do PostgreSQL, utilizando as seguintes configurações:
+
+Host: localhost
+Porta: 5432
+Usuário: postgres
+Senha: 123456789
+
+Essas credenciais e configurações são utilizadas pelo projeto para se conectar ao banco de dados. Certifique-se de que a instância esteja ativa e acessível para garantir o funcionamento correto da aplicação.
 
 ## Endpoints
 
