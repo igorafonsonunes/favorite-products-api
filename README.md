@@ -1,73 +1,110 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# Cliente API
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+## Índice
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+* [Introdução](#introdução)
+* [Instalação](#instalação)
+* [Endpoints](#endpoints)
+* [Como Utilizar](#como-utilizar)
+* [Exemplos de Uso](#exemplos-de-uso)
+* [Parâmetros](#parâmetros)
+* [Observações](#observações)
 
-## Description
+## Introdução
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+A Cliente API é um serviço RESTful que fornece acesso a dados de clientes e uma lista de produtos favoritos. Esta API é um desafio que me foi proposto que está sendo entregue da seguinte maneira.
 
-## Installation
+## Instalação
+
+1. **Clone o repositório:**
 
 ```bash
-$ npm install
+git clone https://github.com/seu-usuario/favorite-products-api.git
+cd favorite-products-api
 ```
 
-## Running the app
+2. **Instale as dependências:**
 
 ```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+npm install
 ```
 
-## Test
+### Executando o projeto
+
+Para rodar o servidor em ambiente de desenvolvimento:
 
 ```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+npm run dev
 ```
 
-## Support
+A API ficará disponível em:
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+```
+http://localhost:3000
+```
 
-## Stay in touch
+```http
+POST /auth
+Content-Type: application/json
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+{
+  "username": "admin",
+  "password": "123456"
+}
+```
 
-## License
+**Usuários disponíveis:**
 
-Nest is [MIT licensed](LICENSE).
+| Usuário  | Senha   | Role  |
+|----------|---------|-------|
+| admin    | 123456  | ADMIN |
+| user     | 123456  | USER  |
+
+---
+
+### Exemplo de requisição autenticada
+
+```http
+GET /produtos
+Authorization: Bearer <seu_token_jwt>
+```
+
+Substitua `<seu_token_jwt>` pelo token retornado no login.
+
+---
+
+### Postman
+
+Dentro do projeto, há uma pasta chamada collection que contém todas as requisições organizadas e prontas para uso no Postman.
+
+Para utilizar essas requisições, basta importar a coleção no Postman e substituir o valor do token nas requisições protegidas por autenticação.
+
+Observação: Gere um novo token acessando o endpoint de login e copie o token JWT retornado. Em seguida, adicione-o no campo Authorization (tipo: Bearer Token) nas requisições que exigem autenticação.
+
+
+## Endpoints
+
+### Clientes
+
+* **GET /clientes**: Retorna uma lista de todos os clientes.
+* **GET /clientes/:id**: Retorna um cliente específico pelo seu ID.
+* **POST /clientes**: Cria um novo cliente.
+* **PUT /clientes/:id**: Atualiza um cliente existente.
+* **DELETE /clientes/:id**: Deleta um cliente.
+
+### Produtos Favoritos
+
+* **GET /produtos-favoritos**: Retorna uma lista de todos os produtos favoritos.
+* **GET /produtos-favoritos/:id**: Retorna a lista de produtos favoritos a partir do ID do CLIENTE.
+* **POST /produtos-favoritos**: Cria um novo produto favorito.
+* **DELETE /produtos-favoritos/:id**: Deleta um produto favorito.
+
+### Produtos
+
+* **GET /produtos**: Retorna uma lista de todos os produtos da API implementada.
+* **GET /produtos/:id**: Retorna um produto especifico a partir de seu ID.
+
+## Como Utilizar
+
+1. Faça uma requisição GET para o endpoint desejado, substituindo `:id` pelo ID do cliente, produto ou produto favorito desejado.
+2. A API retornará os dados do cliente ou produto favorito em formato JSON.
